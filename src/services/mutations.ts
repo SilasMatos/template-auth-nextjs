@@ -6,7 +6,6 @@ import { RegisterMutation, LoginMutation } from "@/types/mutations-types";
 
 export async function Login(payload: LoginMutation) {
   const response = await axiosInstance.post("/login", payload, {
-
   });
   return response.data;
 }
