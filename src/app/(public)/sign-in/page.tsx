@@ -5,6 +5,7 @@ import { useLogin } from '@/hooks/useMutation'
 import { LoginMutation } from '@/types/mutations-types'
 import { useRouter } from 'next/navigation'
 import { Mail, Lock, LogIn, GanttChartSquare } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 export default function SignInPage() {
   const router = useRouter()
@@ -102,12 +103,7 @@ export default function SignInPage() {
                 Lembrar-me
               </label>
             </div>
-
-            <button
-              type="submit"
-              disabled={isPending}
-              className="w-full bg-purple-600 text-white py-2.5 rounded-md hover:bg-purple-700 transition-colors flex items-center justify-center mt-6"
-            >
+            <Button type="submit" disabled={isPending}>
               {isPending ? (
                 'Entrando...'
               ) : (
@@ -116,7 +112,7 @@ export default function SignInPage() {
                   Entrar
                 </>
               )}
-            </button>
+            </Button>
           </form>
 
           {isError && (
