@@ -1,20 +1,27 @@
+// pages/usuarios.tsx
 import React from 'react'
 
-const ProductsPage = () => {
-  const products = [
-    { id: 1, name: 'Product 1', price: '$10.00' },
-    { id: 2, name: 'Product 2', price: '$20.00' },
-    { id: 3, name: 'Product 3', price: '$30.00' }
-  ]
+type Usuario = {
+  id: number
+  name: string
+  email: string
+}
 
+type Props = {
+  usuarios: Usuario[]
+}
+
+export default async function ProductsPage() {
+  const res = await fetch('https://jsonplaceholder.typicode.com/users')
+  console.log('res', res)
+  const usuarios: Usuario[] = await res.json()
   return (
-    <div>
-      <h1>Products</h1>
+    <div style={{ padding: 20 }}>
+      <h1>Lista de Usuários (SSR)</h1>
       <ul>
-        {products.map(product => (
-          <li key={product.id}>
-            <h2>{product.name}</h2>
-            <p>Price: {product.price}</p>
+        {usuarios?.map((usuario: Usuario) => (
+          <li key={usuario.id}>
+            <strong>{usuario.name}</strong> - {usuario.email}
           </li>
         ))}
       </ul>
@@ -22,4 +29,4 @@ const ProductsPage = () => {
   )
 }
 
-export default ProductsPage
+// Função SSR (executada no servidor a cada requisição)
